@@ -1,0 +1,91 @@
+{
+    "fs": {
+        "home": {
+            "jiwidi": {
+                "github": "_link:https://github.com/jiwidi",
+                "CV": "_link:",
+                "e-mail": "_link:mailto:fhjaime96@gmail.com",
+                "telegram": "_link:https://t.me/i_mas_d",
+                "linkedin": "_link:https://www.linkedin.com/in/jaime-ferrando-huertas-611ab5130/",
+                "photos": "_ilink:/home/photos/",
+                "keyboards": "_ilink:/home/keyboards/",
+                "blog": "_ilink:/home/blog/"
+            },
+            "projects": {
+                "jupyter-lab-docker-rpi": "_link:https://github.com/jiwidi/jupyter-lab-docker-rpi",
+                "las-pytorch": "_link:https://github.com/jiwidi/las-pytorch",
+                "time-series-forecasting-with-python": "_link:https://github.com/jiwidi/time-series-forecasting-with-python",
+                "DeepSpeech-pytorch": "_link:https://github.com/jiwidi/DeepSpeech-pytorch",
+                "Netflix-RNN-Recommender": "_link:https://github.com/jiwidi/Netflix-RNN-Recommender",
+                "gmm-classifier": "_link:https://github.com/jiwidi/gmm-classifier"
+            }
+        },
+        "etc": {
+          "motd": "Hi! Welcome to my personal page!",
+          "gallery": "Hi! Welcome to my gallery! <br> Im an amateur photographer with a fuji system, here a couple of my shoots in random order. <br>P. S. Type home to go back to home page",
+          "keyboards": " Welcome to keyboard section WIP <br>P. S. Type home to go back to home page",
+          "blog": " Welcome to blog section WIP <br>P. S. Type home to go back to home page"
+        },
+        "dev": {
+          "random": "_call:random",
+          "urandom": "_call:random"
+        }
+    },
+    "whoami": [
+        "I'm a coder, currently working as a Machine learning engineer at H&M.",
+        "My main work is with online recommendation systems",
+        "I like photography, bicycling, mechanical keyboards, hiking and coding at night :)",
+        "My _professional_ interests are:",
+        " - Machine learning",
+        " - Cloud automation",
+        " - Linux and open source stuff;",
+        " - Python!",
+        "",
+        "P. S. This is an interactive terminal you can use to browse the site, type 'cd photos' to go into the photos section. Alternatively click on the links listed by ls."
+    ],
+    "uname": "Jaime Ferrando Huertas",
+    "upstart": ["cat /etc/motd", "uname", "whoami", "ls"],
+    "startphotos": ["cat /etc/gallery"],
+    "startkeyboards":["cat /etc/keyboards"],
+    "startblog": ["cat /etc/blog"],
+    "pepe": [
+        "__________████████_____██████",
+        "_________█░░░░░░░░██_██░░░░░░█",
+        "________█░░░░░░░░░░░█░░░░░░░░░█",
+        "_______█░░░░░░░███░░░█░░░░░░░░░█",
+        "_______█░░░░███░░░███░█░░░████░█",
+        "______█░░░██░░░░░░░░███░██░░░░██",
+        "_____█░░░░░░░░░░░░░░░░░█░░░░░░░░███",
+        "____█░░░░░░░░░░░░░██████░░░░░████░░█",
+        "____█░░░░░░░░░█████░░░████░░██░░██░░█",
+        "___██░░░░░░░███░░░░░░░░░░█░░░░░░░░███",
+        "__█░░░░░░░░░░░░░░█████████░░█████████",
+        "_█░░░░░░░░░░█████_████___████_█████___█",
+        "_█░░░░░░░░░░█______█_███__█_____███_█___█",
+        "█░░░░░░░░░░░░█___████_████____██_██████",
+        "░░░░░░░░░░░░░█████████░░░████████░░░█",
+        "░░░░░░░░░░░░░░░░█░░░░░█░░░░░░░░░░░░█",
+        "░░░░░░░░░░░░░░░░░░░░██░░░░█░░░░░░██",
+        "░░░░░░░░░░░░░░░░░░██░░░░░░░███████",
+        "░░░░░░░░░░░░░░░░██░░░░░░░░░░█░░░░░█",
+        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█",
+        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█",
+        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█",
+        "░░░░░░░░░░░█████████░░░░░░░░░░░░░░██",
+        "░░░░░░░░░░█▒▒▒▒▒▒▒▒███████████████▒▒█",
+        "░░░░░░░░░█▒▒███████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█",
+        "░░░░░░░░░█▒▒▒▒▒▒▒▒▒█████████████████",
+        "░░░░░░░░░░████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█",
+        "░░░░░░░░░░░░░░░░░░██████████████████",
+        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█",
+        "██░░░░░░░░░░░░░░░░░░░░░░░░░░░██",
+        "▓██░░░░░░░░░░░░░░░░░░░░░░░░██",
+        "▓▓▓███░░░░░░░░░░░░░░░░░░░░█",
+        "▓▓▓▓▓▓███░░░░░░░░░░░░░░░██",
+        "▓▓▓▓▓▓▓▓▓███████████████▓▓█",
+        "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██",
+        "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█",
+        "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█"
+
+     ]
+}

@@ -1,0 +1,143 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Jiwidi personal page</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/rTerm.js"></script>
+    <!-- <script src="/static/script.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div class="intro">
+      <header>
+        <div class="top-bar shadow">
+          <nav>
+            <a class="header" href="/home/">/home/</a
+            ><a class="header" href="/home/photos/">photos/</a>
+          </nav>
+        </div>
+      </header>
+      <div>
+        <h3>
+          <pre>
+                    _               _
+            _ __   | |__     ___   | |_    ___    ___
+  ___      | '_ \  | '_ \   / _ \  | __|  / _ \  / __|
+ / _ \_/\  | |_) | | | | | | (_) | | |_  | (_) | \__ \
+ \/ \___/  | .__/  |_| |_|  \___/   \__|  \___/  |___/
+           |_|
+          </pre>
+        </h3>
+      </div>
+      <div class="gradient" id="gradient">
+        <div class="rterm" align="left" id="rterm"></div>
+      </div>
+    </div>
+
+    <div id="photos"></div>
+    <footer id="foot">Made with ♡ by Jaime Ferrando Huertas © 2021</footer>
+    <img />
+  </body>
+
+  <script>
+    /**
+     * Shuffles array in place. ES6 version
+     * @param {Array} a items An array containing the items.
+     */
+    function shuffle(a) {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    var allImages = "";
+
+    N = 42;
+    var order = Array.apply(null, {
+      length: N,
+    }).map(Number.call, Number);
+    order = shuffle(order);
+    for (var i = 0; i < N - 1; i++) {
+      allImages +=
+        '<img data-enlargable src="images/image' +
+        order[i] +
+        '.webp" loading="lazy" >';
+    }
+
+    $("#photos").append(allImages);
+
+    $("img[data-enlargable]")
+      .addClass("img-enlargable")
+      .click(function () {
+        var src = $(this).attr("src");
+        $("<div>")
+          .css({
+            background: "RGBA(0,0,0,.2) url(" + src + ") no-repeat center",
+            backgroundSize: "contain",
+            width: "100%",
+            height: "100%",
+            position: "fixed",
+            zIndex: "100",
+            top: "0",
+            left: "0",
+            cursor: "zoom-out",
+          })
+          .click(function () {
+            $(this).remove();
+          })
+          .appendTo("body");
+      });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var width = Math.max(
+        document.documentElement.clientWidth,
+        window.innerWidth || 0
+      );
+      var height = Math.max(
+        document.documentElement.clientHeight,
+        window.innerHeight || 0
+      );
+
+      if (height < 800) {
+        // document.getElementById("img").remove();
+        document.getElementById("gradient").style.height = height - 73;
+        initTerm();
+      } else {
+        setTimeout(function () {
+          initTerm();
+        }, 1);
+      }
+    });
+
+    function initTerm() {
+      this.term = rTerm({
+        height: document.getElementById("gradient").offsetHeight * 0.85,
+        username: "jiwidi",
+        hostname: "earth",
+        file: "/static/contacts.json",
+        saveStrings: true,
+        url: document.URL,
+        fsstart: "/home/jiwidi/photos/",
+      });
+    }
+    // Remove spacebar scroll down behaviour
+    document.documentElement.addEventListener(
+      "keydown",
+      function (e) {
+        if ((e.keycode || e.which) == 32) {
+          e.preventDefault();
+        }
+      },
+      false
+    );
+  </script>
+</html>
