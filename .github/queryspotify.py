@@ -23,7 +23,7 @@ class SecretsCacheHandler(CacheHandler):
         # `token_info` will be a python dict. convert it to a JSON string.
         token_string = json.dumps(token_info)
         # save the `token_string` to your secrets
-        # self.repository.create_secret(secret_name=self.secret_cache_name,unencrypted_value=token_string)
+        self.repository.create_secret(secret_name=self.secret_cache_name,unencrypted_value=token_string)
 
     def get_cached_token(self):
         #Retrieve secret from enviorment
