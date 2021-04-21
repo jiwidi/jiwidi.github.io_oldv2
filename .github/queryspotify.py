@@ -3,7 +3,6 @@ import time
 import json
 import os
 from github import Github
-import difflib
 
 class SecretsCacheHandler(CacheHandler):
     def __init__(self, repository_name, github_access_token=None, github_access_token_secret_name=None, secret_cache_name="SPOTIPY_CACHE"):
