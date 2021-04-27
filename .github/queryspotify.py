@@ -2,7 +2,6 @@ from spotipy import Spotify, SpotifyOAuth, CacheHandler
 import time
 import json
 import os
-from typing import Optional
 from github import Github
 
 
@@ -11,6 +10,7 @@ class SecretsCacheHandler(CacheHandler):
         self,
         repository_name,
         github_access_token=None,
+        github_access_token_secret_name=None,
         secret_cache_name="SPOTIPY_CACHE",
     ):
         CacheHandler.__init__(self)
@@ -36,11 +36,13 @@ class SecretsCacheHandler(CacheHandler):
         )
 
     def get_cached_token(self):
-        return self.token_info
+        # Retrieve secret from enviorment
+        token_string = os.environ[self.secret_cache_name]
 
-    def _debug_make_token_expired(self):
-        # print("_test_make_token_expired")
-        self.token_info["expires_at"] = int(time.time())
+        # Convert the string back to a dict and return it
+        token_info = json.loads(token_string)
+
+        return token_info
 
 
 username = "jiwidi"
@@ -51,7 +53,7 @@ spotify = Spotify(
         scope=scope,
         cache_handler=SecretsCacheHandler(
             repository_name="jiwidi/jiwidi.github.io",
-            github_access_token=os.environ["MAIN_TOKEN"],
+            github_access_token_secret_name="MAIN_TOKEN",
         ),
     )
 )
