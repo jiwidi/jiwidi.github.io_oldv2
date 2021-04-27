@@ -2,6 +2,7 @@ from spotipy import Spotify, SpotifyOAuth, CacheHandler
 import time
 import json
 import os
+from typing import Optional
 from github import Github
 
 
@@ -9,8 +10,7 @@ class SecretsCacheHandler(CacheHandler):
     def __init__(
         self,
         repository_name,
-        github_access_token=None,
-        github_access_token_secret_name=None,
+        github_access_token: str,
         token_info_string: Optional[str],
         secret_cache_name="SPOTIPY_CACHE",
     ):
@@ -18,8 +18,6 @@ class SecretsCacheHandler(CacheHandler):
         # Create github api client from token or secret name containing token
         if github_access_token != None:
             self.github_client = Github(github_access_token)
-        elif github_access_token_secret_name != None:
-            self.github_client = Github(os.environ[github_access_token_secret_name])
         else:
             raise Exception(
                 "You must provide token or secret name containing your github access token in order to instantiate the cache handler"
@@ -65,7 +63,7 @@ spotify = Spotify(
         scope=scope,
         cache_handler=SecretsCacheHandler(
             repository_name="jiwidi/jiwidi.github.io",
-            github_access_token_secret_name="MAIN_TOKEN",
+            github_access_token=os.environ["MAIN_TOKEN]),
         ),
     )
 )
