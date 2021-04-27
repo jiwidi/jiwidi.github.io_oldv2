@@ -63,7 +63,7 @@ spotify = Spotify(
         scope=scope,
         cache_handler=SecretsCacheHandler(
             repository_name="jiwidi/jiwidi.github.io",
-            github_access_token=os.environ["MAIN_TOKEN]),
+            github_access_token=os.environ["MAIN_TOKEN"],
         ),
     )
 )
