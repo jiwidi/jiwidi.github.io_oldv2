@@ -11,7 +11,7 @@ class SecretsCacheHandler(CacheHandler):
         self,
         repository_name,
         github_access_token: str,
-        token_info_string: Optional[str],
+        token_info_string=None,
         secret_cache_name="SPOTIPY_CACHE",
     ):
         CacheHandler.__init__(self)
