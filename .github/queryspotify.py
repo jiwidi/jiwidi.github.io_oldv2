@@ -10,40 +10,28 @@ class SecretsCacheHandler(CacheHandler):
     def __init__(
         self,
         repository_name,
-        github_access_token: str,
-        token_info_string=None,
+        github_access_token=None,
         secret_cache_name="SPOTIPY_CACHE",
     ):
         CacheHandler.__init__(self)
         # Create github api client from token or secret name containing token
         if github_access_token != None:
             self.github_client = Github(github_access_token)
+        elif github_access_token_secret_name != None:
+            self.github_client = Github(os.environ[github_access_token_secret_name])
         else:
             raise Exception(
                 "You must provide token or secret name containing your github access token in order to instantiate the cache handler"
             )
 
         self.secret_cache_name = secret_cache_name
-        self.repository_name = repository_name
-
-        if token_info_string is None:
-            self.token_info = None
-        else:
-            self.token_info = json.loads(token_info_string)
-
-    @property
-    def repo(self):
-        if self._repo is None:
-            self._repo = self.github_client.get_repo(self.repository_name)
-        return self._repo
+        self.repository = self.github_client.get_repo(repository_name)
 
     def save_token_to_cache(self, token_info):
-        self.token_info = token_info
-
         # `token_info` will be a python dict. convert it to a JSON string.
         token_string = json.dumps(token_info)
         # save the `token_string` to your secrets
-        self._repo.create_secret(
+        self.repository.create_secret(
             secret_name=self.secret_cache_name, unencrypted_value=token_string
         )
 
