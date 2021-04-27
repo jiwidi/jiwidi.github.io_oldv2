@@ -11,6 +11,7 @@ class SecretsCacheHandler(CacheHandler):
         repository_name,
         github_access_token=None,
         github_access_token_secret_name=None,
+        token_info_string: Optional[str],
         secret_cache_name="SPOTIPY_CACHE",
     ):
         CacheHandler.__init__(self)
@@ -26,6 +27,11 @@ class SecretsCacheHandler(CacheHandler):
 
         self.secret_cache_name = secret_cache_name
         self.repository_name = repository_name
+
+        if token_info_string is None:
+            self.token_info = None
+        else:
+            self.token_info = json.loads(token_info_string)
 
     @property
     def repo(self):
