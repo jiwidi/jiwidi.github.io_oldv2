@@ -10,18 +10,15 @@ class SecretsCacheHandler(CacheHandler):
         self,
         repository_name,
         github_access_token=None,
-        github_access_token_secret_name=None,
         secret_cache_name="SPOTIPY_CACHE",
     ):
         CacheHandler.__init__(self)
         # Create github api client from token or secret name containing token
         if github_access_token != None:
             self.github_client = Github(github_access_token)
-        elif github_access_token_secret_name != None:
-            self.github_client = Github(os.environ[github_access_token_secret_name])
         else:
             raise Exception(
-                "You must provide token or secret name containing your github access token in order to instantiate the cache handler"
+                "You must provide token containing your github access token in order to instantiate the cache handler"
             )
 
         self.secret_cache_name = secret_cache_name
@@ -53,7 +50,7 @@ spotify = Spotify(
         scope=scope,
         cache_handler=SecretsCacheHandler(
             repository_name="jiwidi/jiwidi.github.io",
-            github_access_token_secret_name="MAIN_TOKEN",
+            github_access_token=os.environ["MAIN_TOKEN"],
         ),
     )
 )
