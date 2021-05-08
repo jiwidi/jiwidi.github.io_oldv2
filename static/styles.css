@@ -85,15 +85,13 @@ h1 {
 
 h1 span {
     font-size: 1rem;
-    font-style: italic;
-    font-weight: normal;
     display: block;
     letter-spacing: 0;
 }
 
 a {
     text-decoration: none;
-    font-style: normal;
+    font-family: monospace, sans-serif;
     font-weight: 600;
 }
 
