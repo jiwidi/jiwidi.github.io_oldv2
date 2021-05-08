@@ -96,25 +96,32 @@ rTerm = function (options) {
         this.upcid = 0;
         this.upstartInterrupted = false;
 
-        for (cid in this.data.upstart) {
-            if (cid > 0) {
-                delay += (this.data.upstart[cid - 1].length + 1) * this.chartime;
-            }
+        visited = getCookie("visited")
 
-
-            setTimeout(function(aux) {
-                if (window.blurred && !this.upstartInterrupted) {
-                    this.callUpstartImmediately(this.data.upstart.slice(this.upcid));
-                    this.upstartInterrupted = true;
-                    return;
-                }
-                else if (!this.upstartInterrupted) {
-                    this.enterCommand(this.data.upstart[this.upcid]);
-                }
-                this.upcid++;
-                console.log(aux, this.data.upstart.length)
-            }, delay, cid);
+        if(visited ){
+            this.callUpstartImmediately(this.data.upstart.slice(this.upcid));
         }
+        else{
+            for (cid in this.data.upstart) {
+                if (cid > 0) {
+                    delay += (this.data.upstart[cid - 1].length + 1) * this.chartime;
+                }
+
+
+                setTimeout(function(aux) {
+                    if (window.blurred && !this.upstartInterrupted) {
+                        this.callUpstartImmediately(this.data.upstart.slice(this.upcid));
+                        this.upstartInterrupted = true;
+                        return;
+                    }
+                    else if (!this.upstartInterrupted) {
+                        this.enterCommand(this.data.upstart[this.upcid]);
+                    }
+                    this.upcid++;
+                }, delay, cid);
+            }
+        }
+
         delay += (this.data.upstart[this.data.upstart.length - 1].length + 1) * this.chartime;
         return delay;
     };
@@ -178,8 +185,6 @@ rTerm = function (options) {
             if (cid > 0) {
                 delay += (this.data.startblog[cid - 1].length + 1) * this.chartime;
             }
-
-            console.log(cid)
             setTimeout(function() {
                 if (window.blurred && !this.upstartInterrupted) {
                     this.callUpstartImmediately(this.data.startblog.slice(this.upcid));
