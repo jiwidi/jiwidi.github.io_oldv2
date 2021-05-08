@@ -2,6 +2,4 @@
 
 WIP
 
-https://jiwidi.me/home/
-
-https://imjai.me
+https://imjai.me/home/
