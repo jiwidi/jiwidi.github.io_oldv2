@@ -17,10 +17,9 @@ rTerm = function (options) {
     // Starting path in fs
     this.fsstart = options.fsstart || "/home/" + this.username;
     // High of the terminal
-    if(options.url.split("/")[4]=="photos"){
+    if (options.url.split("/")[4] == "photos") {
         this.height = 200;
-      }
-    else{
+    } else {
         this.height = 500;
 
     }
@@ -42,47 +41,46 @@ rTerm = function (options) {
     this.clicked = false;
 
     // Load data, call upstart commands and set callbacks
-    this.init = function() {
-      request = new XMLHttpRequest();
-      request.open("GET", this.file, true);
-      request.onload = (function() {
-        if (request.status >= 200 && request.status < 400) {
-          this.data = JSON.parse(request.response);
+    this.init = function () {
+        request = new XMLHttpRequest();
+        request.open("GET", this.file, true);
+        request.onload = (function () {
+            if (request.status >= 200 && request.status < 400) {
+                this.data = JSON.parse(request.response);
 
-          window.onblur = function() {
-              window.blurred = true;
-          };
-          window.onfocus = function() {
-              window.blurred = false;
-          };
+                window.onblur = function () {
+                    window.blurred = true;
+                };
+                window.onfocus = function () {
+                    window.blurred = false;
+                };
 
-          if (this.data.upstart !== "undefined") {
-              if(options.url.split("/")[4]=="photos"){
-                var delay = this.callPhotos();
-              } else if(options.url.split("/")[4]=="keyboards"){
-                var delay = this.callKeyboard();
-              } else if(options.url.split("/")[4]=="blog"){
-                var delay = this.callBlog();
-              }
-              else {
-                var delay = this.callUpstart(); // Home page
-              }
+                if (this.data.upstart !== "undefined") {
+                    if (options.url.split("/")[4] == "photos") {
+                        var delay = this.callPhotos();
+                    } else if (options.url.split("/")[4] == "keyboards") {
+                        var delay = this.callKeyboard();
+                    } else if (options.url.split("/")[4] == "blog") {
+                        var delay = this.callBlog();
+                    } else {
+                        var delay = this.callUpstart(); // Home page
+                    }
 
-              setTimeout(function() {
-                document.addEventListener("keydown", this.keyCallback);
-              }, delay);
-          } else {
-            document.addEventListener("keydown", this.keyCallback);
-          }
-        }
-      }).bind(this);
-      request.send();
+                    setTimeout(function () {
+                        document.addEventListener("keydown", this.keyCallback);
+                    }, delay);
+                } else {
+                    document.addEventListener("keydown", this.keyCallback);
+                }
+            }
+        }).bind(this);
+        request.send();
 
-      document.getElementById(this.divid).innerHTML = '<div id="term"> <span id="termcli">' +
-        this.termPrev + '</span><span class="cursor">&#9608</span></div>';
+        document.getElementById(this.divid).innerHTML = '<div id="term"> <span id="termcli">' +
+            this.termPrev + '</span><span class="cursor">&#9608</span></div>';
     };
 
-    this.termPrev = '<b>' + this.uhsername + '</b>:' + this.cdir+ '$  '
+    this.termPrev = '<b>' + this.uhsername + '</b>:' + this.cdir + '$  '
     this.termPrev = this.termPrev.replace('/home/jiwidi', '~')
     this.oldInput = ''
     this.input = '';
@@ -98,24 +96,22 @@ rTerm = function (options) {
 
         visited = getCookie("visited");
 
-        if(visited ){
+        if (visited) {
             this.callUpstartImmediately(this.data.upstart.slice(this.upcid));
-        }
-        else{
-            setCookie("visited",1,5);
+        } else {
+            setCookie("visited", 1, 5);
             for (cid in this.data.upstart) {
                 if (cid > 0) {
                     delay += (this.data.upstart[cid - 1].length + 1) * this.chartime;
                 }
 
 
-                setTimeout(function(aux) {
+                setTimeout(function (aux) {
                     if (window.blurred && !this.upstartInterrupted) {
                         this.callUpstartImmediately(this.data.upstart.slice(this.upcid));
                         this.upstartInterrupted = true;
                         return;
-                    }
-                    else if (!this.upstartInterrupted) {
+                    } else if (!this.upstartInterrupted) {
                         this.enterCommand(this.data.upstart[this.upcid]);
                     }
                     this.upcid++;
@@ -136,13 +132,12 @@ rTerm = function (options) {
             if (cid > 0) {
                 delay += (this.data.startphotos[cid - 1].length + 1) * this.chartime;
             }
-            setTimeout(function() {
+            setTimeout(function () {
                 if (window.blurred && !this.upstartInterrupted) {
                     this.callUpstartImmediately(this.data.startphotos.slice(this.upcid));
                     this.upstartInterrupted = true;
                     return;
-                }
-                else if (!this.upstartInterrupted) {
+                } else if (!this.upstartInterrupted) {
                     this.enterCommandImmediately(this.data.startphotos[this.upcid]);
                 }
                 this.upcid++;
@@ -161,13 +156,12 @@ rTerm = function (options) {
             if (cid > 0) {
                 delay += (this.data.startkeyboards[cid - 1].length + 1) * this.chartime;
             }
-            setTimeout(function() {
+            setTimeout(function () {
                 if (window.blurred && !this.upstartInterrupted) {
                     this.callUpstartImmediately(this.data.startkeyboards.slice(this.upcid));
                     this.upstartInterrupted = true;
                     return;
-                }
-                else if (!this.upstartInterrupted) {
+                } else if (!this.upstartInterrupted) {
                     this.enterCommandImmediately(this.data.startkeyboards[this.upcid]);
                 }
                 this.upcid++;
@@ -186,13 +180,12 @@ rTerm = function (options) {
             if (cid > 0) {
                 delay += (this.data.startblog[cid - 1].length + 1) * this.chartime;
             }
-            setTimeout(function() {
+            setTimeout(function () {
                 if (window.blurred && !this.upstartInterrupted) {
                     this.callUpstartImmediately(this.data.startblog.slice(this.upcid));
                     this.upstartInterrupted = true;
                     return;
-                }
-                else if (!this.upstartInterrupted) {
+                } else if (!this.upstartInterrupted) {
                     this.enterCommandImmediately(this.data.startblog[this.upcid]);
                 }
                 this.upcid++;
@@ -215,7 +208,7 @@ rTerm = function (options) {
         this.interruptCommand = false;
 
         for (lid in command) {
-            setTimeout(function() {
+            setTimeout(function () {
                 if (window.blurred && !this.interruptCommand) {
                     this.enterCommandImmediately(command.slice(this.currlid));
                     this.interruptCommand = true;
@@ -226,7 +219,7 @@ rTerm = function (options) {
                 this.currlid++;
             }, this.chartime * lid);
         }
-        setTimeout(function() {
+        setTimeout(function () {
             if (!this.interruptCommand) {
                 this.enterCallback();
             }
@@ -243,16 +236,15 @@ rTerm = function (options) {
 
     // Update #termcli with new input
     this.updateTerm = function () {
-        if(this.termPrev.split('$')[0].slice(-1)!="/"){
-            this.termPrev = this.termPrev.split('$')[0]+'/$'+this.termPrev.split('$')[1]
+        if (this.termPrev.split('$')[0].slice(-1) != "/") {
+            this.termPrev = this.termPrev.split('$')[0] + '/$' + this.termPrev.split('$')[1]
         }
         this.termPrev = this.termPrev.replace('/home/jiwidi/', '~/')
         document.getElementById("termcli").innerHTML = this.oldInput + this.termPrev + this.input;
-        while (document.getElementById("term").offsetHeight > this.height)
-        {
+        while (document.getElementById("term").offsetHeight > this.height) {
             this.delFristString();
             document.getElementById("termcli").innerHTML = this.oldInput + this.termPrev +
-              this.input;
+                this.input;
         }
     };
 
@@ -263,11 +255,11 @@ rTerm = function (options) {
         this.nStrings--;
     };
 
-    this.keyCallback = (function(event) {
+    this.keyCallback = (function (event) {
         if (event.key.length == 1) {
             this.addCallback(event.key);
         } else if (event.which == 8 || event.which == 46 ||
-                   event.which == 110) {
+            event.which == 110) {
             this.delCallback();
         } else if (event.which == 13) {
             this.enterCallback();
@@ -292,58 +284,48 @@ rTerm = function (options) {
 
     // Call command from input
     this.enterCallback = (function () {
-        if (this.input == '')
-        {
+        if (this.input == '') {
             this.emptyCallback();
-        }
-        else
-        {
-            if (this.saveStrings)
-            {
+        } else {
+            if (this.saveStrings) {
                 this.sendString(this.input);
             }
             this.commandHistoryIterator = 0;
             this.commandHistory.unshift(this.input);
-            if (this.commandHistory.length > this.maxHistoryLength)
-            {
+            if (this.commandHistory.length > this.maxHistoryLength) {
                 this.commandHistory.pop();
             }
             var args = this.input.split(" ");
-            if (args[0] in this.funcMap)
-            {
+            if (args[0] in this.funcMap) {
                 this.funcMap[args[0]](args);
-            }
-            else
-            {
+            } else {
                 this.unknownCallback();
             }
         }
     }).bind(this);
 
     // Show previous command from history
-    this.upCallback = (function() {
-      if (this.commandHistoryIterator < this.commandHistory.length - 1)
-      {
-          this.commandHistoryIterator++;
-      }
-      this.input = this.commandHistory[this.commandHistoryIterator];
-      this.updateTerm();
+    this.upCallback = (function () {
+        if (this.commandHistoryIterator < this.commandHistory.length - 1) {
+            this.commandHistoryIterator++;
+        }
+        this.input = this.commandHistory[this.commandHistoryIterator];
+        this.updateTerm();
     }).bind(this);
 
     // Show next command from history
-    this.downCallback = (function() {
-      if (this.commandHistoryIterator > 0)
-      {
-          this.commandHistoryIterator--;
-      }
-      this.input = this.commandHistory[this.commandHistoryIterator];
-      this.updateTerm();
+    this.downCallback = (function () {
+        if (this.commandHistoryIterator > 0) {
+            this.commandHistoryIterator--;
+        }
+        this.input = this.commandHistory[this.commandHistoryIterator];
+        this.updateTerm();
     }).bind(this);
 
     /*
      * Call empty command
      */
-    this.emptyCallback = (function() {
+    this.emptyCallback = (function () {
         this.oldInput += this.termPrev + this.input + '<br>';
         this.nStrings++;
         this.updateTerm();
@@ -352,7 +334,7 @@ rTerm = function (options) {
     /*
      * Call unknown command
      */
-    this.unknownCallback = (function() {
+    this.unknownCallback = (function () {
         this.oldInput += this.termPrev + this.input + '<br>' + this.input + ": command not found" + '<br>';
         this.input = '';
         this.nStrings += 2;
@@ -360,17 +342,17 @@ rTerm = function (options) {
     }).bind(this);
 
     // Send string to logger
-    this.sendString = (function(cli_input) {
+    this.sendString = (function (cli_input) {
         request = new XMLHttpRequest();
         request.open(
-          "GET",
-          "https://" + window.location.hostname + ":" + this.loggerAppPort + "?" + cli_input,
-          true);
+            "GET",
+            "https://" + window.location.hostname + ":" + this.loggerAppPort + "?" + cli_input,
+            true);
         request.send();
     }).bind(this);
 
     // Get object by path
-    this.getByPath = (function(dstname) {
+    this.getByPath = (function (dstname) {
         var path = '';
         if (dstname.startsWith("/")) {
             path = dstname;
@@ -412,7 +394,7 @@ rTerm = function (options) {
      *    -a    do not ignore entries starting with .
      *    -l    use a long listing format [TODO]
      */
-    this.lsCallback = (function(args) {
+    this.lsCallback = (function (args) {
         this.oldInput += this.termPrev + this.input + '<br>';
         this.nStrings++;
 
@@ -442,8 +424,7 @@ rTerm = function (options) {
             this.nStrings++;
         } else {
             for (item in dirData) {
-                if (!item.startsWith('.') || all)
-                {
+                if (!item.startsWith('.') || all) {
                     if (typeof dirData[item] === 'string') {
                         if (dirData[item].startsWith("_link:")) {
                             this.oldInput += '<a class="link" href="' + dirData[item].slice(6, ) + '" target="_blank">' + item + '</a><br>';
@@ -467,7 +448,7 @@ rTerm = function (options) {
      * Concatenate FILE to standard output.
      * Usage: cat [OPTION]... [FILE]...
      */
-    this.catCallback = (function(args) {
+    this.catCallback = (function (args) {
         var data = this.getByPath(args[1])[0];
         if (data == '' || typeof data === 'undefined') {
             this.oldInput += this.termPrev + this.input + '<br>' + this.input + ": No such file or directory" + '<br>';
@@ -495,18 +476,18 @@ rTerm = function (options) {
      * if DIR is a link: open URL in a new tab.
      * Usage: cd [DIR]
      */
-    this.cdCallback = (function(args) {
+    this.cdCallback = (function (args) {
         var dstname = '';
         if (args.length < 2 || args[1] == " ") {
             // dstname = "~";
         } else {
             dstname = args[1];
         }
-        if(dstname==".."){
+        if (dstname == "..") {
             aux = this.cdir.split("/").slice();
-            dstname = aux.slice(0, aux.length-1).join("/");
+            dstname = aux.slice(0, aux.length - 1).join("/");
         }
-        if(dstname=="/home/jiwidi/" & this.cdir!="/home/jiwidi" & this.cdir!="/home/jiwidi/"){
+        if (dstname == "/home/jiwidi/" & this.cdir != "/home/jiwidi" & this.cdir != "/home/jiwidi/") {
             window.location.href = '/home/';
         }
         // else if(dstname.substr(0,3)=="../"){
@@ -537,7 +518,7 @@ rTerm = function (options) {
                 this.input = '';
                 this.nStrings++;
                 window.open(data.slice(7, ), '_self').focus();
-            }else {
+            } else {
                 this.oldInput += this.termPrev + this.input + '<br>' + this.input + ": Not a directory" + '<br>';
                 this.input = '';
                 this.nStrings += 2;
@@ -563,18 +544,18 @@ rTerm = function (options) {
      * Show full pathname of the current working directory
      * Usage: pwd
      */
-    this.pwdCallback = (function(args) {
-      this.oldInput += this.termPrev + this.input + '<br>' + this.cdir + '<br>';
-      this.input = '';
-      this.nStrings += 2;
-      this.updateTerm();
+    this.pwdCallback = (function (args) {
+        this.oldInput += this.termPrev + this.input + '<br>' + this.cdir + '<br>';
+        this.input = '';
+        this.nStrings += 2;
+        this.updateTerm();
     }).bind(this);
 
     /*
      * Show whoami info from this.data.whoami
      * Usage: whoami
      */
-    this.whoamiCallback = (function() {
+    this.whoamiCallback = (function () {
         this.oldInput += this.termPrev + this.input + '<br>';
         this.nStrings++;
 
@@ -590,7 +571,7 @@ rTerm = function (options) {
      * Show uname info from this.data.uname
      * Usage: uname
      */
-    this.unameCallback = (function() {
+    this.unameCallback = (function () {
         this.oldInput += this.termPrev + this.input + '<br>' + this.data.uname + '<br>';
         this.input = '';
         this.nStrings += 2;
@@ -601,7 +582,7 @@ rTerm = function (options) {
      * Generate random float-pointed number in [0, 1)
      * Usage: random
      */
-    this.randomCallback = (function() {
+    this.randomCallback = (function () {
         this.oldInput += this.termPrev + this.input + '<br>' + String(Math.random()) + '<br>';
         this.input = '';
         this.nStrings += 2;
@@ -612,17 +593,17 @@ rTerm = function (options) {
      * Show all available commands list
      * Usage: help
      */
-    this.helpCallback = (function() {
-        this.oldInput += this.termPrev + this.input
-                      + '<br>GNU bash, version 4.3.48(1)-release (x86_64-pc-linux-gnu)'
-                      + '<br>These shell commands are defined internally.  Type "help" to see this list.<br><br>'
-                      + '<br>cd [-L|[-P [-e]] [-@]] [dir]'
-                      + '<br>echo [-neE] [arg ...] '
-                      + '<br>exit [n]'
-                      + '<br>help [-dms] [pattern ...]'
-                      + '<br>time [-p] pipeline'
-                      + '<br>times<br>';
-                      + '<br>pepe<br>';
+    this.helpCallback = (function () {
+        this.oldInput += this.termPrev + this.input +
+            '<br>GNU bash, version 4.3.48(1)-release (x86_64-pc-linux-gnu)' +
+            '<br>These shell commands are defined internally.  Type "list" to see the full command list.<br><br>' +
+            '<br>cd [-L|[-P [-e]] [-@]] [dir]' +
+            '<br>echo [-neE] [arg ...] ' +
+            '<br>exit [n]' +
+            '<br>help [-dms] [pattern ...]' +
+            '<br>time [-p] pipeline' +
+            '<br>times<br>'; +
+        '<br>pepe<br>';
 
         this.input = '';
         this.nStrings += 10;
@@ -634,7 +615,7 @@ rTerm = function (options) {
      * Exit console (deactivate keys callbacks)
      * Usage: exit
      */
-    this.exitCallback = (function() {
+    this.exitCallback = (function () {
         this.oldInput += this.termPrev + this.input + '<br>';
         this.nStrings++;
 
@@ -648,7 +629,7 @@ rTerm = function (options) {
      * Print the STRING passed as argument
      * Usage: echo [STRING]
      */
-    this.echoCallback = (function() {
+    this.echoCallback = (function () {
         var data = this.input.slice(5);
         this.oldInput += this.termPrev + this.input + '<br>' + data + '<br>';
 
@@ -661,7 +642,7 @@ rTerm = function (options) {
      * Just print hiii!
      * Usage: hi
      */
-    this.hiCallback = (function() {
+    this.hiCallback = (function () {
         this.oldInput += this.termPrev + this.input + '<br>hiii!<br>';
         this.nStrings += 2;
         this.input = '';
@@ -672,7 +653,7 @@ rTerm = function (options) {
      * Just print man page request
      * Usage: man
      */
-    this.manCallback = (function() {
+    this.manCallback = (function () {
         this.oldInput += this.termPrev + this.input + '<br>What manual page do you want?<br>';
         this.nStrings += 2;
         this.input = '';
@@ -683,21 +664,21 @@ rTerm = function (options) {
      * Just type "Oh you!" and log out
      * Usage: ohyou
      */
-     this.ohYouCallback = (function() {
-         this.oldInput += this.termPrev + this.input + '<br>oh you!<br>';
-         this.nStrings += 2;
+    this.ohYouCallback = (function () {
+        this.oldInput += this.termPrev + this.input + '<br>oh you!<br>';
+        this.nStrings += 2;
 
-         document.removeEventListener("keydown", this.keyCallback, false);
+        document.removeEventListener("keydown", this.keyCallback, false);
 
-         this.input = '';
-         this.updateTerm();
-     }).bind(this);
+        this.input = '';
+        this.updateTerm();
+    }).bind(this);
 
-     /*
-      * Clear screen and log out
-      * Usage: poweroff
-      */
-    this.poweroffCallback = (function() {
+    /*
+     * Clear screen and log out
+     * Usage: poweroff
+     */
+    this.poweroffCallback = (function () {
         document.removeEventListener("keydown", this.keyCallback, false);
         this.termPrev = '';
         this.oldInput = '';
@@ -710,14 +691,14 @@ rTerm = function (options) {
      * Clear screen
      * Usage: reboot
      */
-    this.rebootCallback = (function() {
+    this.rebootCallback = (function () {
         document.removeEventListener("keydown", this.keyCallback, false);
-        setTimeout(function() {
-           this.oldInput = '';
-           this.input = '';
-           this.nStrings = 0;
-           this.updateTerm();
-           document.addEventListener("keydown", this.keyCallback);
+        setTimeout(function () {
+            this.oldInput = '';
+            this.input = '';
+            this.nStrings = 0;
+            this.updateTerm();
+            document.addEventListener("keydown", this.keyCallback);
         }, 1000);
     }).bind(this);
 
@@ -725,17 +706,16 @@ rTerm = function (options) {
      * Call COMMAND as superuser
      * Usage: sudo [COMMAND]
      */
-    this.sudoCallback = (function(args) {
+    this.sudoCallback = (function (args) {
         if (args.length == 1) {
-            this.oldInput += this.termPrev + this.input
-                + '<br>usage: sudo [options] [command]<br>';
+            this.oldInput += this.termPrev + this.input +
+                '<br>usage: sudo [options] [command]<br>';
             this.nStrings += 2;
             this.input = '';
             this.updateTerm();
         } else if (args[1] in this.funcMap) {
             this.funcMap[args[1]](args.slice(1));
-        }
-        else {
+        } else {
             this.unknownCallback();
         }
     }).bind(this);
@@ -744,10 +724,10 @@ rTerm = function (options) {
      * Imitates df
      * Usage df [OPTION]
      */
-    this.dfCallback = (function(args) {
-        this.oldInput += this.termPrev + this.input
-            + '<br>Filesystem  1K-blocks  Used    Available  Use%  Mounted on'
-            + '<br>/dev/sda1   514229     514229          0  100%  /boot<br>';
+    this.dfCallback = (function (args) {
+        this.oldInput += this.termPrev + this.input +
+            '<br>Filesystem  1K-blocks  Used    Available  Use%  Mounted on' +
+            '<br>/dev/sda1   514229     514229          0  100%  /boot<br>';
         this.nStrings += 3;
         this.input = '';
         this.updateTerm();
@@ -757,34 +737,34 @@ rTerm = function (options) {
      * Imitates apt
      * Usage apt [OPTION] [PACKET]
      */
-    this.aptCallback = (function(args) {
+    this.aptCallback = (function (args) {
         if (args.length == 1) {
-            this.oldInput += this.termPrev + this.input
-                + '<br>apt 1.2.34 (amd64)'
-                + '<br>Usage: apt [options] command'
-                + '<br>This APT has Super Cow Powers.<br>';
+            this.oldInput += this.termPrev + this.input +
+                '<br>apt 1.2.34 (amd64)' +
+                '<br>Usage: apt [options] command' +
+                '<br>This APT has Super Cow Powers.<br>';
             this.nStrings += 4;
         } else if (args[1] == 'update') {
-            this.oldInput += this.termPrev + this.input
-                + '<br>Reading package lists... Done'
-                + '<br>E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)'
-                + '<br>E: Unable to lock directory /var/lib/apt/lists/<br>';
+            this.oldInput += this.termPrev + this.input +
+                '<br>Reading package lists... Done' +
+                '<br>E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)' +
+                '<br>E: Unable to lock directory /var/lib/apt/lists/<br>';
             this.nStrings += 4;
         } else if (args[1] == 'upgrade') {
-            this.oldInput += this.termPrev + this.input
-                + '<br>E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)'
-                + '<br>E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?<br>';
+            this.oldInput += this.termPrev + this.input +
+                '<br>E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)' +
+                '<br>E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?<br>';
             this.nStrings += 3;
         } else if (args[1] == 'install') {
-            this.oldInput += this.termPrev + this.input
-                + '<br>Reading package lists... Done'
-                + '<br>Building dependency tree'
-                + '<br>Reading state information... Done'
-                + '<br>E: Unable to locate package ' + args[2] +'<br>';
+            this.oldInput += this.termPrev + this.input +
+                '<br>Reading package lists... Done' +
+                '<br>Building dependency tree' +
+                '<br>Reading state information... Done' +
+                '<br>E: Unable to locate package ' + args[2] + '<br>';
             this.nStrings += 5;
         } else {
-            this.oldInput += this.termPrev + this.input
-                + '<br>E: Invalid operation ' + args[1] +'<br>';
+            this.oldInput += this.termPrev + this.input +
+                '<br>E: Invalid operation ' + args[1] + '<br>';
             this.nStrings += 2;
         }
         this.input = '';
@@ -794,21 +774,56 @@ rTerm = function (options) {
     /*
      * Prints ASCII art with FU logo
      */
-    this.pepeCallback = (function(args) {
-      this.oldInput += this.termPrev + this.input + '<br>';
-      this.nStrings++;
+    this.pepeCallback = (function (args) {
+        this.oldInput += this.termPrev + this.input + '<br>';
+        this.nStrings++;
 
-      for (item of this.data.pepe) {
-          this.oldInput += item + '<br>';
-          this.nStrings++;
-      }
-      this.input = '';
-      this.updateTerm();
+        for (item of this.data.pepe) {
+            this.oldInput += item + '<br>';
+            this.nStrings++;
+        }
+        this.input = '';
+        this.updateTerm();
     }).bind(this);
 
-    this.homeCallback = (function(args) {
+    this.homeCallback = (function (args) {
         window.location.href = '/home/';
-      }).bind(this);
+    }).bind(this);
+
+    this.listCallback = (function (args) {
+        commands = "";
+        for (const [key, value] of Object.entries(this.funcMap)) {
+            commands += key + ', '
+        }
+        commands += "     "
+        this.oldInput += this.termPrev + this.input +
+            '<br>These shell commands are defined internally.<br>' +
+            commands
+
+        this.nStrings += 15;
+        this.input = '';
+        this.updateTerm();
+    }).bind(this);
+
+    this.kenobyCallback = (function (args) {
+
+        this.oldInput += this.termPrev + this.input + '<br>General kenoby<br>'
+        this.nStrings += 1;
+        this.input = '';
+        this.updateTerm();
+    }).bind(this);
+
+    this.tragedyCallback = (function (args) {
+        this.oldInput += this.termPrev + this.input + '<br>';
+        this.nStrings++;
+
+        for (item of this.data.tragedy) {
+            this.oldInput += item + '<br>';
+            this.nStrings++;
+        }
+        this.input = '';
+        this.updateTerm();
+    }).bind(this);
 
     this.funcMap = {
         "ls": this.lsCallback,
@@ -832,7 +847,10 @@ rTerm = function (options) {
         "apt-get": this.aptCallback,
         "df": this.dfCallback,
         "pepe": this.pepeCallback,
-        "home": this.homeCallback
+        "home": this.homeCallback,
+        "list": this.listCallback,
+        "hello-there": this.kenobyCallback,
+        "wise": this.tragedyCallback,
     };
 
     this.init();
