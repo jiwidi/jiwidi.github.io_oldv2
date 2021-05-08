@@ -96,12 +96,13 @@ rTerm = function (options) {
         this.upcid = 0;
         this.upstartInterrupted = false;
 
-        visited = getCookie("visited")
+        visited = getCookie("visited");
 
         if(visited ){
             this.callUpstartImmediately(this.data.upstart.slice(this.upcid));
         }
         else{
+            setCookie("visited",1,5);
             for (cid in this.data.upstart) {
                 if (cid > 0) {
                     delay += (this.data.upstart[cid - 1].length + 1) * this.chartime;
