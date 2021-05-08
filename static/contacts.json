@@ -3,13 +3,12 @@
         "home": {
             "jiwidi": {
                 "github": "_link:https://github.com/jiwidi",
-                "CV": "_link:",
+                "CV": "_link:http://jiwidi.me/CurriculumVitae/JaimeFerrandoHuertas_CV.pdf",
                 "e-mail": "_link:mailto:fhjaime96@gmail.com",
                 "telegram": "_link:https://t.me/i_mas_d",
                 "linkedin": "_link:https://www.linkedin.com/in/jaime-ferrando-huertas-611ab5130/",
                 "photos": "_ilink:/home/photos/",
-                "keyboards": "_ilink:/home/keyboards/",
-                "blog": "_ilink:/home/blog/"
+                "keyboards": "_ilink:/home/keyboards/"
             },
             "projects": {
                 "jupyter-lab-docker-rpi": "_link:https://github.com/jiwidi/jupyter-lab-docker-rpi",

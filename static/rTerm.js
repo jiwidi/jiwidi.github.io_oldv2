@@ -1,8 +1,10 @@
 /*
- * RTerm fork 
+ * RTerm fork
     Original: https://github.com/robolamp/rTerm
     My fork: https://github.com/jiwidi/rTerm
  */
+
+// Main rTerm
 rTerm = function (options) {
     // A link to JSON with fs and cmd responses
     this.file = options.file;
@@ -98,7 +100,9 @@ rTerm = function (options) {
             if (cid > 0) {
                 delay += (this.data.upstart[cid - 1].length + 1) * this.chartime;
             }
-            setTimeout(function() {
+
+
+            setTimeout(function(aux) {
                 if (window.blurred && !this.upstartInterrupted) {
                     this.callUpstartImmediately(this.data.upstart.slice(this.upcid));
                     this.upstartInterrupted = true;
@@ -108,7 +112,8 @@ rTerm = function (options) {
                     this.enterCommand(this.data.upstart[this.upcid]);
                 }
                 this.upcid++;
-            }, delay);
+                console.log(aux, this.data.upstart.length)
+            }, delay, cid);
         }
         delay += (this.data.upstart[this.data.upstart.length - 1].length + 1) * this.chartime;
         return delay;
@@ -130,7 +135,7 @@ rTerm = function (options) {
                     return;
                 }
                 else if (!this.upstartInterrupted) {
-                    this.enterCommand(this.data.startphotos[this.upcid]);
+                    this.enterCommandImmediately(this.data.startphotos[this.upcid]);
                 }
                 this.upcid++;
             }, delay);
@@ -155,7 +160,7 @@ rTerm = function (options) {
                     return;
                 }
                 else if (!this.upstartInterrupted) {
-                    this.enterCommand(this.data.startkeyboards[this.upcid]);
+                    this.enterCommandImmediately(this.data.startkeyboards[this.upcid]);
                 }
                 this.upcid++;
             }, delay);
@@ -173,6 +178,8 @@ rTerm = function (options) {
             if (cid > 0) {
                 delay += (this.data.startblog[cid - 1].length + 1) * this.chartime;
             }
+
+            console.log(cid)
             setTimeout(function() {
                 if (window.blurred && !this.upstartInterrupted) {
                     this.callUpstartImmediately(this.data.startblog.slice(this.upcid));
@@ -180,7 +187,7 @@ rTerm = function (options) {
                     return;
                 }
                 else if (!this.upstartInterrupted) {
-                    this.enterCommand(this.data.startblog[this.upcid]);
+                    this.enterCommandImmediately(this.data.startblog[this.upcid]);
                 }
                 this.upcid++;
             }, delay);

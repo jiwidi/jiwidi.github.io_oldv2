@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/static/styles.css">
     <link rel="stylesheet" href="/static/rTerm.css">
     <script src="/static/rTerm.js"></script>
+    <script src="/static/utils.js"></script>
 </head>
 
 <body>
@@ -42,8 +43,10 @@
         <div class="gradient" id="gradient">
             <div class="rterm" align="left" id="rterm"></div>
         </div>
+        <div id="afterTerminalContent">
         <div class="extra" , id="markdownPlaceholder">
         </div>
+    </div>
     </div>
     <footer id="foot">
         Made with ♡ by Jaime Ferrando Huertas © 2021
@@ -81,6 +84,7 @@
     };
 
     // Markdown to html
+
     var converter = new showdown.Converter();
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", "/home/blog/test.md", false);
@@ -89,11 +93,27 @@
             if (rawFile.status === 200 || rawFile.status == 0) {
                 var allText = rawFile.responseText;
                 var html = converter.makeHtml(allText);
-                document.getElementById("markdownPlaceholder").innerHTML = html;
+                collapside = '<button type="button" class="collapsible">Open Collapsible</button><div class="content"><p>Lorem ipsum...</p></div>'
+                document.getElementById("markdownPlaceholder").innerHTML = collapside;
             }
         }
     }
     rawFile.send(null);
+
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+        content.style.display = "none";
+        } else {
+        content.style.display = "block";
+        }
+    });
+    }
 </script>
 
 </html>
