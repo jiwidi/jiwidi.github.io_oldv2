@@ -221,7 +221,8 @@ footer {
     /* Just in case there are inline attributes */
     width: 100% !important;
     height: auto !important;
-    cursor: zoom-in;
+    background-image: url(../elements/bg-6.gif?2);
+    /* cursor: zoom-in; */
     margin: 5px;
 }
 
