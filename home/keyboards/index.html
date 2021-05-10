@@ -13,6 +13,18 @@
     <link rel="stylesheet" href="/static/rTerm.css">
     <script src="/static/rTerm.js"></script>
     <script src="/static/script.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZV09JLMEW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-TZV09JLMEW');
+    </script>
 </head>
 
 <body>
@@ -48,7 +60,7 @@
 </body>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         var width = Math.max(
             document.documentElement.clientWidth,
             window.innerWidth || 0
@@ -63,7 +75,7 @@
             document.getElementById("gradient").style.height = height - 73;
             initTerm();
         } else {
-            setTimeout(function() {
+            setTimeout(function () {
                 initTerm();
             }, 1);
         }

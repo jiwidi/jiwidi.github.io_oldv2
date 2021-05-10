@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>HTML Redirect</title>
-    <meta http-equiv="refresh" content="0; url = /home/" />
-    <link rel="stylesheet" href="/static/styles.css" />
-  </head>
 
-  <body>
-    <h1 style="text-align: center; color: green">Redirect</h1>
+<head>
+  <title>HTML Redirect</title>
+  <meta http-equiv="refresh" content="0; url = /home/" />
+  <link rel="stylesheet" href="/static/styles.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZV09JLMEW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-    <p style="text-align: center">
-      If your browser supports Refresh, you'll be redirected to Homepage, in 5
-      seconds. Otherwise visit jiwidi.me/home/
-    </p>
-  </body>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-TZV09JLMEW');
+  </script>
+</head>
+
+<body>
+  <h1 style="text-align: center; color: green">Redirect</h1>
+
+  <p style="text-align: center">
+    If your browser supports Refresh, you'll be redirected to Homepage, in 5
+    seconds. Otherwise visit jiwidi.me/home/
+  </p>
+</body>
+
 </html>

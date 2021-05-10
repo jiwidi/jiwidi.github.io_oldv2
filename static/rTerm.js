@@ -649,30 +649,7 @@ rTerm = function (options) {
         this.updateTerm();
     }).bind(this);
 
-    /*
-     * Just print man page request
-     * Usage: man
-     */
-    this.manCallback = (function () {
-        this.oldInput += this.termPrev + this.input + '<br>What manual page do you want?<br>';
-        this.nStrings += 2;
-        this.input = '';
-        this.updateTerm();
-    }).bind(this);
 
-    /*
-     * Just type "Oh you!" and log out
-     * Usage: ohyou
-     */
-    this.ohYouCallback = (function () {
-        this.oldInput += this.termPrev + this.input + '<br>oh you!<br>';
-        this.nStrings += 2;
-
-        document.removeEventListener("keydown", this.keyCallback, false);
-
-        this.input = '';
-        this.updateTerm();
-    }).bind(this);
 
     /*
      * Clear screen and log out
@@ -772,7 +749,7 @@ rTerm = function (options) {
     }).bind(this);
 
     /*
-     * Prints ASCII art with FU logo
+     * Prints ASCII art with pepe logo
      */
     this.pepeCallback = (function (args) {
         this.oldInput += this.termPrev + this.input + '<br>';
@@ -786,10 +763,16 @@ rTerm = function (options) {
         this.updateTerm();
     }).bind(this);
 
+    /*
+     * Cds back into home
+     */
     this.homeCallback = (function (args) {
         window.location.href = '/home/';
     }).bind(this);
 
+    /*
+     * Prints list of avaliable commands
+     */
     this.listCallback = (function (args) {
         commands = "";
         for (const [key, value] of Object.entries(this.funcMap)) {
@@ -805,6 +788,9 @@ rTerm = function (options) {
         this.updateTerm();
     }).bind(this);
 
+    /*
+     * Grievous
+     */
     this.kenobyCallback = (function (args) {
 
         this.oldInput += this.termPrev + this.input + '<br>General kenoby<br>'
@@ -813,6 +799,9 @@ rTerm = function (options) {
         this.updateTerm();
     }).bind(this);
 
+    /*
+     * Prints the tragedy of dark plagueis the wise
+     */
     this.tragedyCallback = (function (args) {
         this.oldInput += this.termPrev + this.input + '<br>';
         this.nStrings++;
@@ -837,9 +826,6 @@ rTerm = function (options) {
         "exit": this.exitCallback,
         "echo": this.echoCallback,
         "hi": this.hiCallback,
-        "man": this.manCallback,
-        "ohyou": this.ohYouCallback,
-        "fuck": this.ohYouCallback,
         "poweroff": this.poweroffCallback,
         "reboot": this.rebootCallback,
         "sudo": this.sudoCallback,
