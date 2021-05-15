@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
     var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("gradient").style.height = height - 73;
         initTerm();
     } else {
-	setTimeout(function() {
+        setTimeout(function () {
             initTerm();
         }, 1);
     }
@@ -20,7 +20,6 @@ function initTerm() {
         hostname: "earth",
         file: "/static/contacts.json",
         saveStrings: true,
-        url:document.URL
+        url: document.URL
     });
 };
-

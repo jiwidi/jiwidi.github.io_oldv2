@@ -31,6 +31,8 @@ body {
 
 div.intro {
     max-width: 808px;
+
+    max-height: 400px;
     position: relative;
     right: 0;
     left: 0;
@@ -334,6 +336,7 @@ footer {
     font-family: monospace, sans-serif;
     color: var(--font);
     min-height: 199px;
+    max-height: 199px;
     width: 800px;
     text-align: left;
 }
