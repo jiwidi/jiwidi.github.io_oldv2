@@ -78,6 +78,9 @@ rTerm = function (options) {
 
         document.getElementById(this.divid).innerHTML = '<div id="term"> <span id="termcli">' +
             this.termPrev + '</span><span class="cursor">&#9608</span></div>';
+
+		document.getElementById("term").focus();
+		document.getElementById("term").select();
     };
 
     this.termPrev = '<b>' + this.uhsername + '</b>:' + this.cdir + '$  '
