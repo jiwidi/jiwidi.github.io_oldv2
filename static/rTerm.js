@@ -375,6 +375,7 @@ rTerm = function (options) {
 		if (path.endsWith("/")) {
 			path = path.slice(0, -1);
 		}
+		path = path.replace("//", "/")
 		var pathArray = path.split("/").slice(1);
 		var newPathArray = [];
 		for (i in pathArray) {
@@ -429,6 +430,7 @@ rTerm = function (options) {
 				}
 			}
 		}
+		lsdir = lsdir.replace("//", "/")
 		var dirData = this.getByPath(lsdir)[0];
 		if (typeof dirData === "undefined") {
 			this.oldInput += "ls: cannot access '" + lsdir +
@@ -471,10 +473,17 @@ rTerm = function (options) {
 	 * Usage: cat [OPTION]... [FILE]...
 	 */
 	this.catCallback = (function (args) {
-		var data = this.getByPath(args[1])[0];
+		if (args[1].startsWith("/")) {
+			var path = args[1]
+		} else {
+			path = this.cdir + "/" + args[1]
+		}
+		var data = this.getByPath(path)[0];
 		if (data == '' || typeof data === 'undefined') {
-			this.oldInput += this.termPrev + this.input + '<br>' +
-				this.input + ": No such file or directory" + '<br>';
+			this.oldInput += this.termPrev + this.input +
+				'<br>' +
+				this.input + ": No such file or directory" +
+				'<br>';
 		} else {
 			if (data.startsWith("_call:")) {
 				var args = data.slice(6, ).split(" ");
@@ -482,18 +491,21 @@ rTerm = function (options) {
 					this.funcMap[args[0]](args);
 					return;
 				} else {
-					this.oldInput += this.termPrev + this.input +
+					this.oldInput += this.termPrev + this
+						.input +
 						'<br>' + data + '<br>';
 				}
 			} else {
-				this.oldInput += this.termPrev + this.input +
+				this.oldInput += this.termPrev + this
+					.input +
 					'<br>' + data + '<br>';
 			}
 		}
 
 		this.input = '';
 		this.nStrings += 2;
-		this.updateTerm();
+		this
+			.updateTerm();
 	}).bind(this);
 
 	/*
@@ -510,7 +522,8 @@ rTerm = function (options) {
 		}
 		if (dstname == "..") {
 			aux = this.cdir.split("/").slice();
-			dstname = aux.slice(0, aux.length - 2).join("/") + "/";
+			dstname = aux.slice(0, aux.length - 1).join("/") +
+				"/";
 		}
 		if (dstname == "/home/jiwidi/" & this.cdir !=
 			"/home/jiwidi" & this.cdir != "/home/jiwidi/") {
@@ -530,8 +543,10 @@ rTerm = function (options) {
 		// }
 		var [data, path] = this.getByPath(dstname);
 		if (typeof data === 'undefined') {
-			this.oldInput += this.termPrev + this.input + '<br>' +
-				this.input + ": No such file or directory" + '<br>';
+			this.oldInput += this.termPrev + this.input +
+				'<br>' +
+				this.input + ": No such file or directory" +
+				'<br>';
 			this.input = '';
 			this.nStrings += 2;
 		} else if (typeof data === 'string') {
@@ -556,7 +571,8 @@ rTerm = function (options) {
 			}
 		} else if (typeof data === 'object') {
 			this.cdir = path;
-			this.oldInput += this.termPrev + this.input + '<br>';
+			this.oldInput += this.termPrev + this.input +
+				'<br>';
 			this.input = '';
 			this.nStrings++;
 
@@ -577,7 +593,8 @@ rTerm = function (options) {
 	 * Usage: pwd
 	 */
 	this.pwdCallback = (function (args) {
-		this.oldInput += this.termPrev + this.input + '<br>' + this
+		this.oldInput += this.termPrev + this.input + '<br>' +
+			this
 			.cdir + '<br>';
 		this.input = '';
 		this.nStrings += 2;
@@ -605,7 +622,8 @@ rTerm = function (options) {
 	 * Usage: uname
 	 */
 	this.unameCallback = (function () {
-		this.oldInput += this.termPrev + this.input + '<br>' + this
+		this.oldInput += this.termPrev + this.input + '<br>' +
+			this
 			.data.uname + '<br>';
 		this.input = '';
 		this.nStrings += 2;
@@ -654,7 +672,8 @@ rTerm = function (options) {
 		this.oldInput += this.termPrev + this.input + '<br>';
 		this.nStrings++;
 
-		document.removeEventListener("keydown", this.keyCallback,
+		document.removeEventListener("keydown", this
+			.keyCallback,
 			false);
 
 		this.input = '';
@@ -694,7 +713,8 @@ rTerm = function (options) {
 	 * Usage: poweroff
 	 */
 	this.poweroffCallback = (function () {
-		document.removeEventListener("keydown", this.keyCallback,
+		document.removeEventListener("keydown", this
+			.keyCallback,
 			false);
 		this.termPrev = '';
 		this.oldInput = '';
@@ -708,7 +728,8 @@ rTerm = function (options) {
 	 * Usage: reboot
 	 */
 	this.rebootCallback = (function () {
-		document.removeEventListener("keydown", this.keyCallback,
+		document.removeEventListener("keydown", this
+			.keyCallback,
 			false);
 		setTimeout(function () {
 			this.oldInput = '';
@@ -817,7 +838,8 @@ rTerm = function (options) {
 	 */
 	this.listCallback = (function (args) {
 		commands = "";
-		for (const [key, value] of Object.entries(this.funcMap)) {
+		for (const [key, value] of Object.entries(this
+				.funcMap)) {
 			commands += key + ', '
 		}
 		commands += "     "
