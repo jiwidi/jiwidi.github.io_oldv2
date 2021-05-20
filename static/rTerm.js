@@ -15,9 +15,9 @@ rTerm = function (options) {
 	// Hostname
 	this.hostname = options.hostname || 'hostname';
 	// Starting path in fs
-	this.fsstart = options.fsstart || "/home/" + this.username;
+	this.fsstart = options.fsstart || "/home/" + this.username + "/";
 	// High of the terminal
-	this.height = 500;
+	this.height = options.max_height || 500;
 	// Maximal number of strings
 	this.maxStrings = options.maxStrings || 15;
 	// Save string to server
@@ -522,7 +522,7 @@ rTerm = function (options) {
 		}
 		if (dstname == "..") {
 			aux = this.cdir.split("/").slice();
-			dstname = aux.slice(0, aux.length - 1).join("/") +
+			dstname = aux.slice(0, aux.length - 2).join("/") +
 				"/";
 		}
 		if (dstname == "/home/jiwidi/" & this.cdir !=
@@ -542,6 +542,10 @@ rTerm = function (options) {
 		//     console.log(aux.slice(small_path+1)[0])
 		// }
 		var [data, path] = this.getByPath(dstname);
+		// if (path == "  ") {
+		// 	this.homeCallback()
+		// 	return
+		// }
 		if (typeof data === 'undefined') {
 			this.oldInput += this.termPrev + this.input +
 				'<br>' +
