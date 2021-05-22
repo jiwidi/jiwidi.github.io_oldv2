@@ -846,7 +846,7 @@ rTerm = function (options) {
 				.funcMap)) {
 			commands += key + ', '
 		}
-		commands += "     "
+		commands += "     \n"
 		this.oldInput += this.termPrev + this.input +
 			'<br>These shell commands are defined internally.<br>' +
 			commands
