@@ -31,7 +31,7 @@ jobs:
         run: python -m pip install requests spotipy==2.18
 
       - name: Latest pytigt
-        run: python -m pip install git+git://github.com/PyGithub/PyGithub@master
+        run: python -m pip install PyGithub==1.55
 
       # Run our spotify query with custom secretCacheHandler
       - name: Run spotify query
