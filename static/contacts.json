@@ -22,7 +22,7 @@
         "etc": {
             "motd": "Hi! Welcome to my personal page!",
             "gallery": "Hi! Welcome to my gallery!. <br> Im an amateur photographer with a fuji system, here a couple of my shoots in random order. <br>P. S.  Click on images to see full res versions. Type home to go back to home page",
-            "keyboards": " Welcome to keyboard section WIP <br>P. S. Type home to go back to home page",
+            "keyboards": "Hi! This section has all the keyboards I have built. <br> <br> I like to build my own keyboards but you could also just buy them preassembled. <br> The soldering, choosing different parts and putting it all together just brings the engineer inside of me. <br>P. S. Type home to go back to home page",
             "blog": " Welcome to blog section WIP <br>P. S. Type home to go back to home page"
         },
         "dev": {
@@ -32,13 +32,13 @@
     },
     "whoami": [
         "I'm a coder, currently working as a Machine learning engineer at H&M.",
-        "My main work is with online recommendation systems",
+        "I'm currently working with recommender systems (recsys), leading the design of",
+        "recsys at H&M",
+        "",
         "I like photography, bicycling, mechanical keyboards, hiking and coding at night :)",
         "My _professional_ interests are:",
-        " - Machine learning",
-        " - Cloud automation",
-        " - Linux and open source stuff;",
-        " - Python!",
+        " - Machine learning, special interest in ASR and RECSYS",
+        " - Open source",
         "",
         "P. S. This is an interactive terminal you can use to browse the site, type 'cd photos' to go into the photos section. Alternatively click on the links listed by ls."
     ],

@@ -1,46 +1,59 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Jiwidi personal page</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="/static/styles.css">
-    <link rel="stylesheet" href="/static/rTerm.css">
-    <script src="/static/rTerm.js"></script>
-    <script src="/static/script.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZV09JLMEW"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+	<meta charset="utf-8">
+	<title>Jiwidi personal page</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+	<link rel="stylesheet" href="/static/styles.css">
+	<link rel="stylesheet" href="/static/rTerm.css">
+	<script src="/static/rTerm.js"></script>
+	<script src="/static/script.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async
+		src="https://www.googletagmanager.com/gtag/js?id=G-TZV09JLMEW"></script>
+	<script type="module"
+		src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js">
+	</script>
+	<link rel="stylesheet" href="/path/to/styles/default.css" />
+	<link href="http://fonts.cdnfonts.com/css/thegoodmonolith" rel="stylesheet">
+	<!-- <script src="/path/to/highlight.pack.js"></script> -->
+	<script>
+		hljs.initHighlightingOnLoad();
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+	</script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
 
-        gtag('config', 'G-TZV09JLMEW');
-    </script>
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'G-TZV09JLMEW');
+
+	</script>
 </head>
 
 <body>
-    <div class="intro">
-        <header>
-            <div class="top-bar shadow">
-                <nav>
+	<div class="intro">
+		<header>
+			<div class="top-bar shadow">
+				<nav>
 
 
-                    <a class="header" href="/home/">/home/</a><a class="header" href="/home/keyboards/">keyboards/</a>
-                </nav>
-            </div>
-        </header>
-        <div>
-            <h3>
-                <pre>
+					<a class="header" href="/home/">/home/</a><a class="header"
+						href="/home/keyboards/">keyboards/</a>
+				</nav>
+			</div>
+		</header>
+		<div>
+			<h3>
+				<pre>
            _                     _                                 _
   ___     | | __   ___   _   _  | |__     ___     __ _   _ __   __| |  ___
  / _ \_/\ | |/ /  / _ \ | | | | | '_ \   / _ \   / _` | | '__| / _` | / __|
@@ -48,60 +61,72 @@
           |_|\_\  \___|  \__, | |_.__/   \___/   \__,_| |_|    \__,_| |___/
                          |___/
         </pre>
-            </h3>
-        </div>
-        <div class="gradient" id="gradient">
-            <div class="rterm" align="left" id="rterm"></div>
-        </div>
-    </div>
-    <!-- <footer id="foot">
+			</h3>
+		</div>
+		<div class="gradient" id="gradient">
+			<div class="rterm" align="left" id="rterm"></div>
+		</div>
+	</div>
+	<div class="md">
+		<zero-md src="/home/keyboards/keyboards.md">
+			<!-- Wrap with a <template> tag -->
+			<template>
+				<!-- Load external stylesheets with a `<link rel="stylesheet">` tag -->
+				<link rel="stylesheet" href="/static/styles.css" />
+			</template>
+		</zero-md>
+	</div>
+	<!-- <footer id="foot">
         Made with ♡ by Jaime Ferrando Huertas © 2021
     </footer> -->
 </body>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var width = Math.max(
-            document.documentElement.clientWidth,
-            window.innerWidth || 0
-        );
-        var height = Math.max(
-            document.documentElement.clientHeight,
-            window.innerHeight || 0
-        );
+	document.addEventListener("DOMContentLoaded", function () {
+		var width = Math.max(
+			document.documentElement.clientWidth,
+			window.innerWidth || 0
+		);
+		var height = Math.max(
+			document.documentElement.clientHeight,
+			window.innerHeight || 0
+		);
 
-        if (height < 800) {
-            // document.getElementById("img").remove();
-            document.getElementById("gradient").style.height = height - 73;
-            initTerm();
-        } else {
-            setTimeout(function () {
-                initTerm();
-            }, 1);
-        }
-    });
+		if (height < 800) {
+			// document.getElementById("img").remove();
+			document.getElementById("gradient").style.height = height - 73;
+			initTerm();
+		} else {
+			setTimeout(function () {
+				initTerm();
+			}, 1);
+		}
+	});
 
-    function initTerm() {
-        this.term = rTerm({
-            height: document.getElementById("gradient").offsetHeight * 0.85,
-            username: "jiwidi",
-            hostname: "earth",
-            file: "/static/contacts.json",
-            saveStrings: true,
-            url: document.URL,
-            fsstart: "/home/jiwidi/keyboards/",
-        });
-    }
-    // Remove spacebar scroll down behaviour
-  document.documentElement.addEventListener(
-    "keydown",
-    function (e) {
-      if ((e.keycode || e.which) == 32) {
-        e.preventDefault();
-      }
-    },
-    false
-  );
+	function initTerm() {
+		this.term = rTerm({
+			height: document.getElementById("gradient").offsetHeight *
+				0.85,
+			username: "jiwidi",
+			hostname: "earth",
+			file: "/static/contacts.json",
+			saveStrings: true,
+			url: document.URL,
+			fsstart: "/home/jiwidi/keyboards/",
+			max_height: 200,
+		});
+	}
+	// Remove spacebar scroll down behaviour
+	document.documentElement.addEventListener(
+		"keydown",
+		function (e) {
+			if ((e.keycode || e.which) == 32) {
+				e.preventDefault();
+			}
+		},
+		false
+	);
+
 </script>
 
 </html>

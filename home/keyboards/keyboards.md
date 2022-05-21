@@ -1,0 +1,79 @@
+# Keyboard collection
+
+<!-- So as a computer guy I spend tons of time attached to a keyboard. The keyboard is basically an extension of my while I do any type
+of work on the computer. Most common keyboards are nice and do the job, but you can get *pretty overkill* if you want to perfectionize your typing experience. These overkilled keyboards dont have any special functionality and do the same as a plain old keyboard, but they just feel nice to type on and often easier to use for longer periods of time without fatigue on your hands. -->
+
+<!-- This section has all the keyboards I have built. I like to build them myself because im a tinker guy, but you could also just buy them preassembled. The soldering, choosing different parts and putting it all together just brings the engineer inside of me. Then there is the art side of it! When building keyboards people create some really nice design combinations, proof of it would be to visit /r/MechanicalKeyboards/. -->
+
+## Discipline 65
+A custom discipline 65 https://github.com/coseyfannitutti/discipline.
+
+Details:
+* Akko Macaw keycaps, gmk nautilus knock off
+* No case, all computer is just contained within the pcb itself
+* XX G tactile Durock v1 switches
+* No plate
+* Durock stabilizers
+<details>
+  <summary>Photos</summary>
+
+  ## Heading
+  1. A numbered
+  2. list
+     * With some
+     * Sub bullets
+</details>
+
+
+## Two idobao id80v2
+Built two id80v2, one for me(black) and another one for my gf(white). First time I saw a case that acted as keyboard plate as well.
+
+
+## KBDfans 67 lite
+DIY keyboard kit from kbdfans, easy to build and **cheap**. The keycaps are almost as expensive as the keyboard
+
+Details:
+* GMK Modern Dolch light keycaps
+* ABS plastic case
+* 67g tangerine linear switches
+* XX plate
+* Kbdfans stock stabilizers
+<details>
+  <summary>Photos</summary>
+
+  ## Heading
+  1. A numbered
+  2. list
+     * With some
+     * Sub bullets
+</details>
+
+## KBDfans 67 lite
+DIY keyboard kit from kbdfans, easy to build and **cheap**. The keycaps are almost as expensive as the keyboard
+
+Details:
+* GMK Modern Dolch light keycaps
+* ABS plastic case
+* 67g tangerine linear switches
+* XX plate
+* Kbdfans stock stabilizers
+<details>
+  <summary>Photos</summary>
+
+  ## Heading
+  1. A numbered
+  2. list
+     * With some
+     * Sub bullets
+</details>
+
+## Satan GH60
+Satan 60 generic pcb along with a low profile walnut wooden case.
+
+Details:
+
+## First keyboard cant remember name
+
+Details:
+
+
