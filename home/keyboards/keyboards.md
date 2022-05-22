@@ -8,29 +8,34 @@ of work on the computer. Most common keyboards are nice and do the job, but you 
 ## Discipline 65
 A custom discipline 65 https://github.com/coseyfannitutti/discipline.
 
+<img data-enlargable align="right" width="250" height="250" src="/home/keyboards/photos/discipline.png">
+
+Details:
+* Akko Macaw keycaps, gmk nautilus knock off
+* No case
+* XX G tactile Durock v1 switches
+* No plate
+* Durock stabilizers
+
+<br/><br/>
+
+## Two idobao id80v2
+Built two id80v2, one for me(black) and another one for my gf(white). First time I saw a case that acted as keyboard plate as well.
+<!-- ![keyimg](/home/keyboards/photos/idobao.png) -->
+<img data-enlargable align="right" width="250" height="250" src="/home/keyboards/photos/idobao.png">
+
 Details:
 * Akko Macaw keycaps, gmk nautilus knock off
 * No case, all computer is just contained within the pcb itself
 * XX G tactile Durock v1 switches
 * No plate
 * Durock stabilizers
-<details>
-  <summary>Photos</summary>
 
-  ## Heading
-  1. A numbered
-  2. list
-     * With some
-     * Sub bullets
-</details>
-
-
-## Two idobao id80v2
-Built two id80v2, one for me(black) and another one for my gf(white). First time I saw a case that acted as keyboard plate as well.
-
-
+<br/><br/>
 ## KBDfans 67 lite
-DIY keyboard kit from kbdfans, easy to build and **cheap**. The keycaps are almost as expensive as the keyboard
+DIY keyboard kit from kbdfans, easy to build and **cheap**.
+
+<img data-enlargable align="right" width="250" height="250"  src="/home/keyboards/photos/kbd67lite.png">
 
 Details:
 * GMK Modern Dolch light keycaps
@@ -38,42 +43,32 @@ Details:
 * 67g tangerine linear switches
 * XX plate
 * Kbdfans stock stabilizers
-<details>
-  <summary>Photos</summary>
 
-  ## Heading
-  1. A numbered
-  2. list
-     * With some
-     * Sub bullets
-</details>
-
-## KBDfans 67 lite
-DIY keyboard kit from kbdfans, easy to build and **cheap**. The keycaps are almost as expensive as the keyboard
-
-Details:
-* GMK Modern Dolch light keycaps
-* ABS plastic case
-* 67g tangerine linear switches
-* XX plate
-* Kbdfans stock stabilizers
-<details>
-  <summary>Photos</summary>
-
-  ## Heading
-  1. A numbered
-  2. list
-     * With some
-     * Sub bullets
-</details>
+<br/><br/>
 
 ## Satan GH60
 Satan 60 generic pcb along with a low profile walnut wooden case.
 
-Details:
-
-## First keyboard cant remember name
+<img data-enlargable align="right" width="250" height="250"  src="/home/keyboards/photos/satan.png">
 
 Details:
+* GMK Modern Dolch light keycaps
+* ABS plastic case
+* 67g tangerine linear switches
+* XX plate
+* Kbdfans stock stabilizers
 
+<br/><br/>
+## Tada68
+
+First mechanical keyboard, prebuilt bought from kbdfans.
+<img data-enlargable align="right" width="250" height="250" src="/home/keyboards/photos/tada68.jpeg">
+
+
+Details:
+* Generic keycaps
+* ABS plastic case
+* 67g tactile zealios v1
+* Brass plate
+* Kbdfans stock stabilizers
 

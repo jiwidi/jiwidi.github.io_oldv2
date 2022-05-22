@@ -862,7 +862,21 @@ rTerm = function (options) {
 	this.kenobyCallback = (function (args) {
 
 		this.oldInput += this.termPrev + this.input +
-			'<br>General kenoby<br>'
+			'<br>General Kenoby<br>'
+		this.nStrings += 1;
+		this.input = '';
+		this.updateTerm();
+	}).bind(this);
+
+
+	/*
+	 * rm
+	 */
+	this.rmCallback = (function (args) {
+
+		this.oldInput += this.termPrev + this.input +
+			'<br>rm: cannot remove ' + args[1] +
+			': Permission denied<br>'
 		this.nStrings += 1;
 		this.input = '';
 		this.updateTerm();
@@ -886,6 +900,7 @@ rTerm = function (options) {
 	this.funcMap = {
 		"ls": this.lsCallback,
 		"cd": this.cdCallback,
+		"rm": this.rmCallback,
 		"cat": this.catCallback,
 		"whoami": this.whoamiCallback,
 		"uname": this.unameCallback,

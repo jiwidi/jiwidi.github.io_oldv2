@@ -2,9 +2,9 @@
     --bg: #282a36;
     --fg: #ffffff;
     --bg_acc: #e0e0e0;
-    --font: #c8c8c8;
+    --font: #f8f8f2;
     --navfont: #bd93f9;
-    --links: #37c0ca;
+    --links: #ff79c6;
     --magenta: DeepPink;
     --cyan: #389DF2;
     --yellow: #FDD000;
@@ -26,7 +26,6 @@ body {
     line-height: 1.4;
     color: var(--fg);
     background: #222;
-    color: #c8c8c8;
     position: relative;
 
 }
@@ -403,11 +402,11 @@ footer {
     font-size: 15px;
 }
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover)
 .active,
 .collapsible:hover {
     background-color: #ccc;
-}
+} */
 
 /* Style the collapsible content. Note: hidden by default */
 .content {
@@ -416,3 +415,8 @@ footer {
     overflow: hidden;
     background-color: #f1f1f1;
 }
+
+/* img[alt=keyimg] {
+    width: 400px;
+    float: right;
+} */
