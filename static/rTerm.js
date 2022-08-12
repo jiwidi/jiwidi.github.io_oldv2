@@ -699,12 +699,12 @@ rTerm = function (options) {
 	}).bind(this);
 
 	/*
-	 * Just print hiii!
+	 * Just print Hello there!
 	 * Usage: hi
 	 */
 	this.hiCallback = (function () {
 		this.oldInput += this.termPrev + this.input +
-			'<br>hiii!<br>';
+			'<br>Hello there!<br>';
 		this.nStrings += 2;
 		this.input = '';
 		this.updateTerm();
